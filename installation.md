@@ -18,18 +18,24 @@ yarn init -2
 yarn -D add typescript
 ```
 
-## eslint
+## eslint / prettier
 
 ### installieren
 
 ```shell
-yarn -D add eslint
+yarn add -D eslint prettier eslint-plugin-prettier eslint-config-prettier
 ```
 
-### notwendige plugins installieren
+### wegen typescript
 
 ```shell
-yarn add eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest
+yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
+```
+
+## wegen React
+
+```shell
+yarn add -D eslint-plugin-react eslint-plugin-react-hooks
 ```
 
 ### config erstellen
@@ -40,12 +46,40 @@ yarn create @eslint/config
 
 hier alles konfigurieren
 
-## prettier
+### husky / lint-staged
 
 ```shell
-yarn -D add prettier
+yarn add -D lint-staged husky
 ```
 
+### scripts
+
+```shell
+"scripts": {
+    "lint": "eslint --cache \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --cache --fix \"src/**/*.{js,jsx,ts,tsx}\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "yarn run lint:fix"
+  },
+```
+
+### .prettierrc file:
+
+```shell
+{
+  "useTabs": false,
+  "tabWidth": 4,
+  "singleQuote": true,
+  "printWidth": 120,
+  "trailingComma": "es5"
+}
+```
 ## vscode sdk installieren
 
 ```shell
