@@ -1,4 +1,4 @@
-#was ich alles machen musste
+# Installation
 
 ## corepack enablen (Node.js version >= 16.10)
 
