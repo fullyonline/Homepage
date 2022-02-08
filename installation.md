@@ -6,16 +6,66 @@
 corepack enable
 ```
 
-## yarn init
+## creat react app
+
+```shell
+yarn create react-app client --template typescript
+```
+
+## react app auf yarn berry upgraden
+
+### node_modules löschen
+
+```shell
+cd client
+rm -rf node_modules
+```
+
+## yarn auf version berry upgraden
+
+```shell
+yarn set version berry
+```
+
+## anpassungen am .yarnrc.yml
+
+Der nodeLinker: "node_modules" muss raus. Zusätzlich muss noch folgendes rein:
+
+```shell
+packageExtensions:
+  babel-preset-react-app@*:
+    dependencies:
+      "@babel/plugin-proposal-private-property-in-object": "*"
+```
+
+[Das ist ein workaround für ein Problem mit den dependencies von create react-app.](https://github.com/facebook/create-react-app/issues/11793)
+
+## .gitignore
+
+.gitignore auf der Höhe der React-App löschen. Alles wird über den parent folder gehandelt
+
+## dependencies installieren
+
+```shell
+yarn install
+```
+
+## oberste Ebene
+
+```shell
+cd ..
+```
+
+## yarn berry installieren
 
 ```shell
 yarn init -2
 ```
 
-## typescript
+## typescript installieren
 
 ```shell
-yarn -D add typescript
+yarn add -D typescript
 ```
 
 ## eslint / prettier
@@ -80,6 +130,20 @@ yarn add -D lint-staged husky
   "trailingComma": "es5"
 }
 ```
+
+### .gitignore file:
+
+```shell
+**/.pnp.*
+**/.yarn/*
+**/node_modules/*
+!**/.yarn/patches
+!**/.yarn/plugins
+!**/.yarn/releases
+!**/.yarn/sdks
+!**/.yarn/versions
+```
+
 ## vscode sdk installieren
 
 ```shell
