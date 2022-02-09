@@ -2,6 +2,8 @@
 
 ## corepack enablen (Node.js version >= 16.10)
 
+Dafür wird eine Shell mit Admin Rechten benötigt.
+
 ```shell
 corepack enable
 ```
